@@ -2,7 +2,7 @@ const Course=require("../models/Course");
 const Category=require("../models/Category");
 const User=require("../models/User");
 const {uploadToCloudinary}=require("../utils/imageUploader");
-const { useSelector } = require("react-redux");
+
 const CourseProgress = require("../models/CourseProgress");
 
 //createCourse handler function
