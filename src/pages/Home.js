@@ -10,6 +10,7 @@ import { LearningLanguageSection } from '../components/common/HomePage/LearningL
 import { InstructorSection } from '../components/common/HomePage/InstructorSection';
 import { ExploreMore } from '../components/common/HomePage/ExploreMore';
 import { Footer } from '../components/common/HomePage/Footer';
+import { ReviewSlider } from '../components/common/ReviewSlider';
 
 
 
@@ -217,6 +218,7 @@ const Home=()=>{
                 <h2 className='text-center text-white text-4xl font-semibold mt-10'>Review from Other Learners</h2>
 
                 {/* Review Slider Here */}
+                <ReviewSlider/>
 
 
               </div>

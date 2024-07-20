@@ -9,6 +9,7 @@ import { StatsComponent } from '../components/common/StatsComponent';
 import { LearningGrid } from '../components/common/LearningGrid';
 import { ContactFormSection } from '../components/common/ContactFormSection';
 import {Footer} from "../components/common/HomePage/Footer"
+import { ReviewSlider } from '../components/common/ReviewSlider';
 
 export const AboutUs = () => {
   return (
@@ -78,14 +79,15 @@ export const AboutUs = () => {
 
         {/* section5 */}
 
-        <section className="mx-auto flex flex-col items-center justify-between gap-5 mb-[150px]">
+        <section className="mx-auto flex flex-col items-center justify-between gap-5 ">
             <LearningGrid/>
             <ContactFormSection/>
         </section>
-        <section className="w-[1440px] h-[460px] gap-[52px] flex flex-col items-center justify-center">
+        <section className="w-[1440px] h-[400px] gap-[52px] flex flex-col items-center justify-center">
             <div className="font-semibold text-[36px]">
                 Reviews from other learners
             </div>
+            <ReviewSlider/>
         </section>
        
     </div>

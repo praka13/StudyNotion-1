@@ -38,11 +38,12 @@ const cartSlice=createSlice({
             const index=state.cart.findIndex((item)=>item._id===course._id);
 
             if(index>=0){
+                console.log("inside");
                 state.totalItems--;
                 state.total-=state.cart[index].price;
                 state.cart.splice(index,1);
             }
-
+            console.log("outside"); 
             localStorage.setItem("cart", JSON.stringify(state.cart))
         localStorage.setItem("total", JSON.stringify(state.total))
         localStorage.setItem("totalItems", JSON.stringify(state.totalItems))

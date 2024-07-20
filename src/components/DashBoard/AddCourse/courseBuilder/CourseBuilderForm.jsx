@@ -151,7 +151,7 @@ export const CourseBuilderForm = () => {
 
   }
   return (
-    <div className='h-fit bg-richblack-800 w-[640px] rounded-md p-[24px] ml-[40px]' >
+    <div className='h-fit bg-richblack-800 w-[640px] rounded-md p-[24px] ml-[40px] text-white' >
 
       <p className='font-semibold font-inter text-[24px] text-richblack-5 '>Course Builder</p>
 

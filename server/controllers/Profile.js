@@ -2,6 +2,7 @@ const User=require("../models/User");
 const Profile=require("../models/Profile");
 const Course=require("../models/Course");
 const { uploadToCloudinary } = require("../utils/imageUploader");
+const CourseProgress = require("../models/CourseProgress");
 
 
 exports.updateProfile=async(req,res)=>{
@@ -170,10 +171,30 @@ exports.getEnrolledCourses = async (req, res) => {
     try {
       const userId = req.user.id
       console.log(userId);
-      const userDetails = await User.findOne({
+      let userDetails = await User.findOne({
         _id: userId,
       })
-        .populate("courses").exec()
+        .populate({
+          path:"courses",
+          populate:({
+            path:"courseContent",
+            populate:({
+              path:"subSection"
+            })
+
+          })
+        })
+
+
+        userDetails=userDetails.toObject()
+        for(var i=0;i<userDetails.courses.length;i++){
+          let courseProgressCount=await CourseProgress.findOne({
+            courseId:userDetails.courses[i]._id,
+            userId:userId,
+          })
+          let courseProgress=courseProgressCount?.completedVideos.length
+          userDetails.courses[i].completedLectures=courseProgress
+        }
       if (!userDetails) {
         return res.status(400).json({
           success: false,
@@ -191,3 +212,71 @@ exports.getEnrolledCourses = async (req, res) => {
       })
     }
 };
+
+exports.getEnrolledCourses2 = async (req, res) => {
+  try {
+    const userId = req.user.id
+    console.log(userId);
+    const userDetails = await User.findOne({
+      _id: userId,
+    })
+
+    if (!userDetails) {
+      return res.status(400).json({
+        success: false,
+        message: `Could not find user with id: ${userDetails}`,
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      data: userDetails.courses,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    })
+  }
+};
+
+exports.instructorDashboard=async(req,res)=>{
+  try{
+    const courseDetails=await Course.find({instructor:req.user.id});
+
+    const courseData=courseDetails.map((course)=>{
+      const totalStudentsEnrolled=course.studentsEnrolled.length;
+      const totalAmountGenerated=totalStudentsEnrolled*course.price;
+      // console.log(totalAmountGenerated);
+      // console.log(totalStudentsEnrolled);
+
+      //create an new object with the additional fields
+
+      const courseDatawithStats={
+        _id:course._id,
+        courseName:course.courseName,
+        courseDesc:course.courseDescription,
+        totalStudentsEnrolled,
+        totalAmountGenerated
+
+      }
+
+       return courseDatawithStats
+    })
+
+    return res.status(200).json({courses:courseData})
+
+    
+
+    
+
+    
+
+  }
+  catch(err){
+    console.error(err);
+    return res.status(500).json({
+      success:false,
+      message:err.message
+    })
+  }
+}

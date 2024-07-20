@@ -5,6 +5,7 @@ import { FaPhone } from "react-icons/fa6";
 import { ContactFormSection } from '../components/common/ContactFormSection';
 import { ContactUsForm } from '../components/common/ContactUsForm';
 import { Footer } from '../components/common/HomePage/Footer';
+import { ReviewSlider } from '../components/common/ReviewSlider';
 
 export const ContactUs = () => {
   return (
@@ -58,8 +59,9 @@ export const ContactUs = () => {
 
         </div>
 
-        <div className="w-[1440px] h-[460px] flex flex-col items-center justify-center">
+        <div className="w-[1440px] h-[460px] flex flex-col items-center justify-center gap-[52px]">
             <p className="text-[36px] text-[#f1fdff] font-semibold">Reviews from other learners</p>
+            <ReviewSlider/>
 
         </div>
         <Footer/>

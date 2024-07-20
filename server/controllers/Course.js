@@ -3,10 +3,26 @@ const Category=require("../models/Category");
 const User=require("../models/User");
 const {uploadToCloudinary}=require("../utils/imageUploader");
 const { useSelector } = require("react-redux");
+const CourseProgress = require("../models/CourseProgress");
 
 //createCourse handler function
 
 //const {courses}=useSelector((state)=>state.course);
+
+function convertSecondsToDuration(totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600)
+    const minutes = Math.floor((totalSeconds % 3600) / 60)
+    const seconds = Math.floor((totalSeconds % 3600) % 60)
+  
+    if (hours > 0) {
+      return `${hours}h ${minutes}m`
+    } else if (minutes > 0) {
+      return `${minutes}m ${seconds}s`
+    } else {
+      return `${seconds}s`
+    }
+  }
+  
 
 exports.createCourse=async(req,res)=>{
 
@@ -155,10 +171,11 @@ exports.getCourseDetails=async(req,res)=>{
     try{
         //get courseId
         const {courseId}=req.body;
+       
         //find CourseDetails
 
-        const courseDetails=await Course.find(
-            {_id:courseId})
+        const courseDetails=await Course.findById(
+            courseId)
             .populate(
                 {
                     path:"instructor",
@@ -167,15 +184,17 @@ exports.getCourseDetails=async(req,res)=>{
                     }
                 }
             )
-            .populate("category")
-            //.populate("ratingAndReviews")
+
+            //.populate("category")
+           
+           // .populate("ratingandReviews")
             .populate({
                 path:"courseContent",
                 populate:{
                     path:"subSection"
                 }
             })
-            .exec();
+            
 
     if(!courseDetails){
         return res.status(400).json({
@@ -384,4 +403,189 @@ exports.editCourseStatus=async(req,res)=>{
             message:err.message
         })
     }
+}
+
+exports.getInstructorCourseDetails=async(req,res)=>{
+
+    try{
+
+        const userId=req.user.id;
+    
+        const result=await User.findById(userId)
+        .populate({
+            path:"courses",
+            populate:{
+                path:"courseContent",
+                populate:{
+                    path:"subSection"
+                }
+            }
+        
+    
+        })
+    
+        return res.status(200).json({
+            success:true,
+            data:result,
+        })
+
+    }
+    catch(err){
+
+        return res.status(400).json({
+            success:false,
+            message:err
+        })
+
+    }
+}
+
+exports.deleteCourse=async(req,res)=>{
+    try{
+
+        const {courseId}=req.body;
+
+        const result= await Course.findByIdAndDelete(courseId);
+
+        return res.status(200).json({
+            success:true,
+            message:"Course Deleted Successfully",
+        }) 
+
+    }
+    catch(err){
+
+        return res.status(400).json({
+            success:false,
+            message:"Course Not Deleted"
+        })
+
+    }
+}
+
+exports.getCourseDetails2=async(req,res)=>{
+    try{
+        //get courseId
+        const {courseId}=req.body;
+       
+        //find CourseDetails
+
+        const courseDetails=await Course.findById(
+            courseId)
+            .populate(
+                {
+                    path:"instructor",
+                    populate:{
+                        path:"additionalDetails"
+                    }
+                }
+            )
+
+            .populate("category")
+           
+           .populate("ratingandReviews")
+            .populate({
+                path:"courseContent",
+                populate:{
+                    path:"subSection"
+                }
+            })
+            
+
+    if(!courseDetails){
+        return res.status(400).json({
+            success:false,
+            message:`Could not find course with ${courseId}`,
+
+        })
+    }
+    //return response
+    return res.status(200).json({
+        success:true,
+        message:"Course details fetched successfully",
+        data:courseDetails
+
+    })
+
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+
+    }
+}
+
+
+exports.getFullCourseDetails=async(req,res)=>{
+
+    try{
+        const {courseId}=req.body;
+        const userId=req.user.id;
+
+        //const userId=req.user.id;
+
+        const courseDetails=await Course.findById(courseId)
+        .populate({
+            path:"instructor",
+            populate:{
+                path:"additionalDetails",
+            }
+        })
+        .populate("category")
+        .populate("ratingandReviews")
+        .populate({
+            path:"courseContent",
+            populate:{
+                path:"subSection"
+            }
+        })
+
+        let courseProgressCount=await CourseProgress.findOne({
+            courseId:courseId,
+            userId:userId
+            
+           
+        })
+
+        console.log("courseProgressCount",courseProgressCount);
+
+        if(!courseDetails){
+            return res.status(400).json({
+                success:false,
+                message:"Course not found"
+            })
+        }
+        let totalDurationInSeconds=0;
+
+        courseDetails.courseContent.forEach((content)=>{
+            content.subSection.forEach((subSection)=>{
+                const timeDurationInSeconds=parseInt(subSection.timeDuration);
+                totalDurationInSeconds+=timeDurationInSeconds
+            })
+        })
+
+        const totalDuration=convertSecondsToDuration(totalDurationInSeconds);
+
+        return res.status(200).json({
+            success:true,
+            data:{
+                courseDetails,
+                totalDuration,
+                completedVideos:courseProgressCount?.completedVideos?courseProgressCount?.completedVideos:[]
+            }
+        })
+
+    }
+    catch(err){
+
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        }) 
+
+    }
+
 }

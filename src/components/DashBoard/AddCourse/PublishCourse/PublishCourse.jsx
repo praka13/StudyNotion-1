@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux';
-import { setCourse, setStep } from '../../../../slices/courseSlice';
+import { setCourse, setEditCourse, setStep } from '../../../../slices/courseSlice';
 import { apiConnector } from '../../../../services/apiconnector';
 import { courseEndpoints } from '../../../../services/apis';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { IoIosArrowBack } from "react-icons/io";
 
 export const PublishCourse = () => {
 
@@ -19,7 +20,7 @@ export const PublishCourse = () => {
 
 
     const dispatch=useDispatch();
-    const {courses}=useSelector((state)=>state.course);
+    const {courses,editCourse}=useSelector((state)=>state.course);
     const {token}=useSelector((state)=>state.auth);
     const navigate=useNavigate();
 
@@ -32,7 +33,7 @@ export const PublishCourse = () => {
             })
 
             toast.success("Status Updated Successfully");
-
+            console.log(courses);
             dispatch(setStep(1));
             dispatch(setCourse(null));
             navigate("/dashboard/my-courses");
@@ -75,6 +76,11 @@ export const PublishCourse = () => {
 
     const onSubmit=()=>{
 
+        dispatch(setStep(1));
+        dispatch(setCourse(null));
+        dispatch(setEditCourse(false));
+        navigate("/dashboard/my-courses");
+
         handleCoursePublish();
 
     }
@@ -85,27 +91,46 @@ export const PublishCourse = () => {
     }
   return (
     <div className='h-screen'>
+        <div className='h-[230px] w-[665px] bg-richblack-800 p-[24px] ml-[25px] rounded-xl'>
 
-        <p>Publish Course</p>
+
+        <p className='font-semibold font-inter text-[24px] mb-[10px]'>Publish Course</p>
         <form onSubmit={handleSubmit(onSubmit)}>
 
-            <div className='text-white'>
+            <div className='text-white mt-[30px]'>
                 
-                <input type="checkbox" id="public" {...register("public")}></input>
-                <label htmlFor='public'>Make this Course as Public</label>
+                <input className='mr-[8px] w-[20px] h-[20px] bg-richblack-800' type="checkbox" id="public" {...register("public")}></input>
+                <label htmlFor='public' className='font-medium text-[16px] text-richblack-400'>Make this Course as Public</label>
             </div>
 
-            <div >
-                <button onClick={goBack} type='button'>
+            <div className='flex justify-between mt-[50px]' >
+                <button onClick={goBack} type='button' className='w-[112px] h-[48px] bg-richblack-600 flex items-center justify-center gap-x-[10px] rounded-lg'>
+                    <IoIosArrowBack/>
                     Back
                 </button>
-                <button className='ml-[10px]' type='submit'>
+                <button  type='submit' className='w-[152px] h-[48px] text-richblack-600 flex items-center justify-center gap-x-[10px] rounded-lg bg-yellow-50'>
                     Save Changes
                 </button>
+
+                <button type='button' className='w-[252px] h-[48px] bg-richblack-600 flex items-center justify-center gap-x-[10px] rounded-lg' onClick={()=>{
+                    dispatch(setStep(1));
+                    dispatch(setCourse(null));
+                    dispatch(setEditCourse(false));
+                    navigate("/dashboard/my-courses");
+                }}>
+                    {
+
+                        !editCourse ? (<div>Don't want to make course Public</div>):(<div>Don't want to make changes</div>)
+                    }
+                   
+                </button>
+
             </div>
 
 
         </form>
+        </div>
+
 
     </div>
   )

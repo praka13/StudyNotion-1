@@ -82,8 +82,8 @@ export const CourseInformationForm = () => {
         try{
             const result=await apiConnector("GET",courseEndpoints.COURSE_CATEGORIES_API);
             console.log(result);
-            console.log("Printing SubLink Results" ,result.data.allCategories);
-            setCourseCategories(result.data.allCategories);
+            console.log("Printing SubLink Results" ,result.data.data);
+            setCourseCategories(result.data.data);
             console.log("Hello",courseCategories);
 
 
@@ -145,13 +145,18 @@ export const CourseInformationForm = () => {
             const currentValues=getValues();
             const formData=new FormData();
 
+            console.log(courses);
+
             formData.append("courseId",courses?._id);
+            console.log(courses?._id);
             formData.append("prevCourseCategory",courses?.category);
+            console.log(courses?.category);
             formData.append("courseName",data.courseTitle);
             formData.append("courseDescription",data.courseShortDesc);
             formData.append("price",data.coursePrice);
             formData.append("whatYouWillLearn",data.courseBenefits);
             formData.append("category",data.courseCategory);
+            console.log(data.courseCategory);
             formData.append("instructions",JSON.stringify(data.courseRequirements));
             formData.append("thumbNailImage",data.courseImage);
             formData.append("tag",JSON.stringify(data.courseTags));
@@ -177,6 +182,7 @@ export const CourseInformationForm = () => {
         formData.append("price",data.coursePrice);
         formData.append("whatYouWillLearn",data.courseBenefits);
         formData.append("category",data.courseCategory);
+        console.log(data.courseCategory);
         formData.append("instructions",JSON.stringify(data.courseRequirements));
         formData.append("thumbNailImage",data.courseImage);
         formData.append("tag",JSON.stringify(data.courseTags));
@@ -190,11 +196,11 @@ export const CourseInformationForm = () => {
 
   return (
   
-<div className='flex items-center justify-center w-[720px] '>
-<form onSubmit={handleSubmit(onSubmit)} className="rounded-md border-richblack-700 bg-richblack-800 p-6 h-fit  w-[665px] flex flex-col">
+<div className='flex items-center justify-center w-[720px] text-white'>
+<form onSubmit={handleSubmit(onSubmit)} className="rounded-md border-richblack-700 bg-richblack-800 p-6 h-fit w-[665px] flex flex-col">
 
 <div className='w-[617px] h-[76px] mb-[26px]'>
-    <label htmlFor='courseTitle' className='text-sm font-inter text-[14px] '>Course Title<sup className='text-pink-400'>*</sup></label>
+    <label htmlFor='courseTitle' className='text-sm font-inter text-[14px] text-white'>Course Title<sup className='text-pink-400'>*</sup></label>
     <input id="courseTitle" placeholder='Enter Course Titles' {...register("courseTitle",{required:true})} className='w-[617px] h-[48px] text-richblack-100 mt-[6px] p-[12px] rounded-md bg-richblack-700' ></input>
     {errors.courseTitle && (
     <span>Course Title is required</span>
@@ -203,7 +209,7 @@ export const CourseInformationForm = () => {
 </div>
 
 <div className='mb-[26px]'>
-    <label htmlFor='courseShortDesc' className='text-sm font-inter text-[14px] '>Course Short Description<sup className='text-pink-400'>*</sup></label>
+    <label htmlFor='courseShortDesc' className='text-sm font-inter text-[14px] text-white'>Course Short Description<sup className='text-pink-400'>*</sup></label>
     <textarea
     id="courseShortDesc"
     placeholder='Enter Description'
@@ -213,14 +219,14 @@ export const CourseInformationForm = () => {
     {
         errors.courseShortDesc&&(
             <span>
-                Course Description is reequired
+                Course Description is required
             </span>
         )
     }
 </div>
 
 <div className='relative w-[617px] h-[76px] mb-[26px]'>
-    <label htmlFor='coursePrice' className='text-sm font-inter text-[14px] '>Course Price<sup className='text-pink-400'>*</sup></label>
+    <label htmlFor='coursePrice' className='text-sm font-inter text-[14px] text-white'>Course Price<sup className='text-pink-400'>*</sup></label>
     <input id="coursePrice" placeholder='Enter Course Price' {...register("coursePrice",{required:true,valueAsNumber:true})} className='w-full  mt-[6px] h-[48px] px-[32px] text-richblack-100 bg-richblack-700 rounded-md'></input>
     <div className='w-[24px] h-[24px] flex justify-center items-center'>
     <HiOutlineCurrencyRupee fontSize={28} className='absolute top-1/2 text-richblack-500 '/>
@@ -232,7 +238,7 @@ export const CourseInformationForm = () => {
 </div>
 
 <div className='flex flex-col'>
-    <label htmlFor='courseCategory' className='text-sm font-inter text-[14px] '>Course Category<sup className='text-pink-400'>*</sup></label>
+    <label htmlFor='courseCategory' className='text-sm font-inter text-[14px] text-white'>Course Category<sup className='text-pink-400'>*</sup></label>
     <select
     id='courseCategory'
     defaultValue=''
@@ -258,7 +264,7 @@ export const CourseInformationForm = () => {
     }
 </div>
 
-<div>
+<div className='text-white'>
     <TagInput
     name="courseTags"
     register={register}
@@ -268,7 +274,7 @@ export const CourseInformationForm = () => {
     />
 </div>
 
-<div>
+<div className='text-white'>
     <Upload
     name="courseImage"
     register={register}
@@ -279,7 +285,7 @@ export const CourseInformationForm = () => {
 </div>
 
 <div className='mt-[26px]'>
-    <label className='text-sm font-inter text-[14px]'>Benefits of the Course<sup className='text-pink-400'>*</sup></label>
+    <label className='text-sm font-inter text-[14px] text-white'>Benefits of the Course<sup className='text-pink-400'>*</sup></label>
     <textarea 
     id="courseBenefits"
     placeholder='Enter Benefits of the course'
@@ -293,7 +299,7 @@ export const CourseInformationForm = () => {
     )}
 </div>
 
-<div>
+<div className='text-white'>
 <RequirementField
 name="courseRequirements"
 register={register}

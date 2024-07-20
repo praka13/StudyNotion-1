@@ -46,7 +46,7 @@ export const VerifyEmail = () => {
             loading?(<div>
                Loading...
             </div>):(
-                <div className="w-[508px] h-[370px] flex flex-col items-center justify-center mt-[80px] ml-[466px] p-[32px] gap-[24px]">
+                <div className="w-[508px] h-screen flex flex-col items-center justify-center mt-[80px] ml-[466px] p-[32px] gap-[24px]">
                     <h1 className="text-richblack-5 flex justify-start w-[444px] h-[38px] font-inter text-[30px] font-semibold">Verify Email</h1>
                     <p className="w-[444px] h-[52px] text-lg font-inter text-[18px] text-richblack-400">A Verification code has been sent to you.Enter the code below</p>
 

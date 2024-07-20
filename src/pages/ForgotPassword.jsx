@@ -20,7 +20,7 @@ export const ForgotPassword = () => {
         dispatch(getPasswordResetToken(email,setEmailSent))
     }
   return (
-    <div className="text-richblack-500 flex justify-center items-center">
+    <div className="text-richblack-500 flex justify-center items-center h-screen">
         {
             loading?(
                 <div>Loading..</div>

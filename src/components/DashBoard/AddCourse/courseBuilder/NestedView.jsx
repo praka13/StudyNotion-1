@@ -48,7 +48,7 @@ export const NestedView = ({handleChangeEditSectionName}) => {
     const[editSubSection,setEditSubSection]=useState(null);
     const[confirmationModal,setConfirmationModal]=useState(null);
   return (
-    <div className='mt-[20px]'>
+    <div className='mt-[20px] h-fit'>
         <div className='rounded-lg bg-richblack-700 p-6 px-4'>
             {courses?.courseContent?.map((section)=>{
                 return(

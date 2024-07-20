@@ -16,6 +16,7 @@ export const endpoints = {
   export const profileEndpoints = {
     GET_USER_DETAILS_API: BASE_URL + "/profile/getUserDetails",
     GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
+    GET_USER_ENROLLED_COURSES_API2: BASE_URL + "/profile/getEnrolledCourses2"
   }
 
   export const studentEndpoints = {
@@ -27,6 +28,7 @@ export const endpoints = {
 export const courseEndpoints = {
     GET_ALL_COURSE_API: BASE_URL + "/course/getAllCourses",
     COURSE_DETAILS_API: BASE_URL + "/course/getCourseDetails",
+    COURSE_DETAILS_API2: BASE_URL + "/course/getCourseDetails2",
     EDIT_COURSE_API: BASE_URL + "/course/editCourse",
     COURSE_CATEGORIES_API: BASE_URL + "/course/showAllCategory",
     CREATE_COURSE_API: BASE_URL + "/course/createCourse",
@@ -34,7 +36,7 @@ export const courseEndpoints = {
     CREATE_SUBSECTION_API: BASE_URL + "/course/createSubSection",
     UPDATE_SECTION_API: BASE_URL + "/course/updateSection",
     UPDATE_SUBSECTION_API: BASE_URL + "/course/updateSubSection",
-    GET_ALL_INSTRUCTOR_COURSES_API: BASE_URL + "/course/getInstructorCourses",
+    GET_ALL_INSTRUCTOR_COURSES_API: BASE_URL + "/course/getInstructorCourseDetails",
     DELETE_SECTION_API: BASE_URL + "/course/deleteSection",
     DELETE_SUBSECTION_API: BASE_URL + "/course/deleteSubSection",
     DELETE_COURSE_API: BASE_URL + "/course/deleteCourse",
@@ -42,7 +44,8 @@ export const courseEndpoints = {
       BASE_URL + "/course/getFullCourseDetails",
     LECTURE_COMPLETION_API: BASE_URL + "/course/updateCourseProgress",
     CREATE_RATING_API: BASE_URL + "/course/createRating",
-    EDIT_COURSE_STATUS:BASE_URL+"/course/editCourseStatus"
+    EDIT_COURSE_STATUS:BASE_URL+"/course/editCourseStatus",
+    
   }
   
   // RATINGS AND REVIEWS
@@ -52,7 +55,7 @@ export const courseEndpoints = {
   
   // CATAGORIES API
   export const categories = {
-    CATEGORIES_API: BASE_URL + "/course/showAllCategories",
+    CATEGORIES_API: BASE_URL + "/course/showAllCategory",
   }
   
   // CATALOG PAGE DATA
@@ -68,4 +71,11 @@ export const courseEndpoints = {
     UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
     CHANGE_PASSWORD_API: BASE_URL + "/auth/changePassword",
     DELETE_PROFILE_API: BASE_URL + "/profile/deleteAccount",
+    INSTRUCTOR_DASHBOARD:BASE_URL+"/profile/instructorDashboard"
+  }
+
+  export const courseProgressEndPoints={
+    CREATE_COURSE_PROGRESS_API:BASE_URL+"/courseProgress/createCourseProgress",
+    ADD_SUB_SECTION:BASE_URL+"/courseProgress/addSubSection",
+    FIND_COURSE_PROGRESS:BASE_URL+"/courseProgress/findCourseProgress"
   }

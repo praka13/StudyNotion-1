@@ -51,8 +51,8 @@ function matchRoute(route){
     const fetchSubLinks=async()=>{
         try{
             const result=await apiConnector("GET",courseEndpoints.COURSE_CATEGORIES_API);
-            console.log("Printing SubLink Results" ,result.data.allCategories);
-            setSubLinks(result.data.allCategories);
+            console.log("Printing SubLink Results" ,result.data.data);
+            setSubLinks(result.data.data);
             console.log(subLinks);
 
 
@@ -109,7 +109,7 @@ function matchRoute(route){
                                                     
                                                       subLinks.map((subLink,index)=>(
                                                         
-                                                           <Link to={`${subLink.categoryName}`} key={index}>
+                                                           <Link to={`/catalog/${subLink.categoryName.split(" ").join("-").toLowerCase()}`} key={index}>
 
 
                                                             <p>{subLink.categoryName}</p>              
@@ -146,15 +146,22 @@ function matchRoute(route){
 
                 {
                     user && user?.accountType!=="Instructor" && (
-                        <Link to="/dashboard/cart" className='relative'>
-                            <AiOutlineShoppingCart/>
+                        <Link to="/dashboard/cart" className='relative flex flex-col items-center'>
+
+                            <AiOutlineShoppingCart className='text-richblack-500 h-[20px] w-[20px] mt-[13px]'/>
+
+                            <div className='text-richblack-200 absolute flex items-start h-[30px] w-[30px] ml-[45px] mb-[40px] '>
                             {
                                 totalItems>0 && (
-                                    <span>
+                                    <span className='text-pink-50'>
                                         {totalItems}
                                     </span>
+
                                 )
                             }
+                           
+                            </div>
+
                         </Link>
                     )
                 }

@@ -223,17 +223,7 @@ exports.login=async (req,res)=>{
          //user check exist or not
         const user=await User.findOne({email})
         .populate("additionalDetails")
-        .populate({
-            path:"courses",
-            populate:{
-                path:"courseContent",
-                populate:{
-                    path:"subSection"
-                }
-            }
-        
 
-        })
 
         if(!user){
             return res.status(400).json({

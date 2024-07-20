@@ -20,6 +20,12 @@ import { Cart } from "./components/DashBoard/Cart/index";
 import { AddCourse } from "./components/DashBoard/AddCourse";
 import { useSelector } from "react-redux";
 import { MyCourses } from "./components/DashBoard/MyCourses";
+import { EditCourse } from "./components/DashBoard/EditCourse";
+import { Catalog } from "./pages/Catalog";
+import { CourseInfo } from "./pages/CourseInfo";
+import { ViewCourse } from "./pages/ViewCourse";
+import { VideoDetails } from "./components/common/VideoDetails";
+import { Instructor } from "./components/DashBoard/InstructorDashboard/Instructor";
 
 function App() {
   const {user}=useSelector((state)=>state.profile);
@@ -35,7 +41,9 @@ function App() {
         <Route path="/verify-email" element={<VerifyEmail></VerifyEmail>}></Route>
         <Route path="/after-reset" element={<AfterReset/>}></Route>
         <Route path="/about" element={<AboutUs></AboutUs>}></Route>
+        <Route path="/catalog/:catalogName" element={<Catalog/>}/>
         <Route path="/contact" element={<ContactUs/>}></Route>
+        <Route path="/course/:courseId" element={<CourseInfo/>}></Route>
        
         <Route element={<PrivateRoute>
           <DashBoard/>
@@ -59,11 +67,27 @@ function App() {
            <>
               <Route path="/dashboard/add-course" element={<AddCourse/>}></Route>
               <Route path="/dashboard/my-courses" element={<MyCourses/>}></Route>
+              <Route path="/dashboard/instructor" element={<Instructor/>}></Route>
+              <Route path="/dashboard/edit-course/:courseId" element={<EditCourse/>}></Route>
               </>
             
           )
         }
 
+
+        </Route>
+
+        <Route element={<PrivateRoute>
+            <ViewCourse/>
+        </PrivateRoute>}>
+
+          {
+            user?.accountType==="Student" && (
+              <>
+              <Route path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId" element={<VideoDetails></VideoDetails>}></Route>
+              </>
+            )
+          }
 
         </Route>
         <Route path="*" element={<Error/>}/>

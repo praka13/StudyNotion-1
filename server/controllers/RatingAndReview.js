@@ -10,13 +10,17 @@ exports.createRating=async(req,res)=>{
 
 
     //get userId
-    const{userId}=req.user.id;
+    const userId=req.user.id;
+    console.log(userId);
     //fetch data from req body
     const{rating,review,courseId}=req.body;
+    console.log(rating,review,courseId);
     //check if user is enrolled or not
-    const courseDetails=await Course.findOne({_id:courseId, studentsEnrolled:{$elemMatch:{$eq:userId}}});
+    const courseDetails=await Course.findById(courseId);
+    const awd=courseDetails.studentsEnrolled.includes(userId);
+    console.log("kq",awd);
 
-    if(!courseDetails){
+    if(!awd){
         return res.status(404).json({
             success:false,
             message:"Student is not enrolled in the course",
@@ -149,7 +153,7 @@ exports.getAllRatingAndReviews=async(req,res)=>{
 
         return res.status(400).json({
             success:false,
-            message:"Some Error Occurred"
+            message:err.message
         })
 
 
