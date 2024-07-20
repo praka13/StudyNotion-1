@@ -6,7 +6,7 @@ const mongoose=require("mongoose");
 require("dotenv").config()
 const {courseEnrollmentEMail}=require("../mail/courseEnrollmentEmail");
 const crypto=require("crypto");
-const { default: toast } = require("react-hot-toast");
+
 
 //capture the payment and initiate the Razorpay order
 
