@@ -1,6 +1,6 @@
 
 
-const BASE_URL="https://studynotion-backend-ldqt.onrender.com/api/v1";
+const BASE_URL="https://studynotion-backend-u69f.onrender.com/api/v1";
 
 
 // AUTH ENDPOINTS
