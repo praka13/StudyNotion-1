@@ -12,12 +12,17 @@ const OTPSchema=new mongoose.Schema({
     },
     createdAt:{
         type:Date,
-        default:Date.now(),
-        expires:10000000000000,
+        default:Date.now,
+        expires:3600
+       
 
     }
 
 });
+
+
+
+
 
 
 //function ->to send emails;
