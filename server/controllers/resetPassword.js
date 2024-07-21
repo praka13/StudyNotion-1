@@ -31,7 +31,7 @@ exports.resetPasswordToken=async(req,res)=>{
         {new:true}
     )
     //create url
-    const url=`https://studynotion-backend-r59x.onrender.com/update-password/${token}`
+    const url=`https://study-notion-frontend-mocha.vercel.app/update-password/${token}`
     //send mail containing the url
     await mailSender(email,"Password Reset Link",`Password reset link:${url}`);
     //return response
