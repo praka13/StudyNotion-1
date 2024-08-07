@@ -18,11 +18,7 @@ const Template = ({title,desc1,desc2,image,formtype}) => {
 
             {formtype==="signup"?(<SignupForm/>):(<LoginForm></LoginForm>)}
 
-            <div className='flex w-full items-center my-4 gap-x-2'>
-                <div className='w-full h-[1px] bg-richblack-700'></div>
-                <p className='text-richblack-700 font-medium leading-[1.375rem]'>OR</p>
-                <div className='w-full h-[1px] bg-richblack-700'></div>
-            </div>
+
            
 
         </div>
