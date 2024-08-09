@@ -7,12 +7,13 @@ This is a website where Instructors helps students to come on a common platform 
 Just click on the below link and you are there on the website :- <a href="https://study-notion-frontend-mocha.vercel.app/">link</a>
 
 ### Features:-
-<br>
 Here a particular user can signup as a Instructor or a Student.<br>
 <br>
-Instructor Features:-A Instructor can create a course set its price,can view no. of students enrolled,and its total earnings.<br>
+#### Instructor Features:-
+A Instructor can create a course set its price,can view no. of students enrolled,and its total earnings.<br>
 <br>
-Student Featurs:-A student can login and then he/she can buy the course,watch the contents of the course 
+#### Student Featurs:-
+A student can login and then he/she can buy the course,watch the contents of the course and can also give ratings and reviews to the course,
 
 ## Contributing
 
