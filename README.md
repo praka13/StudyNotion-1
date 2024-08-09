@@ -6,9 +6,9 @@ This is a website where students and Instructors come on a common platform to le
 
 Just click on the below link and you are there on the website :- study-notion-frontend-mocha.vercel.app
 
-##Features
+Features:-
 Here a particular user can signup as a Instructor or a Student.
-###Instructor Features:-
+Instructor Features:-
 
 ## Contributing
 
