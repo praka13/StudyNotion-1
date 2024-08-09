@@ -10,9 +10,9 @@ Just click on the below link and you are there on the website :- <a href="https:
 Here a particular user can signup as a Instructor or a Student.<br>
 <br>
 #### Instructor Features:-
-A Instructor can create a course set its price,can view no. of students enrolled,and its total earnings.<br>
+An Instructor can create a course set its price,can view no. of students enrolled in a particular course,and its total earnings.<br>
 <br>
-#### Student Featurs:-
+#### Student Features:-
 A student can login and then he/she can buy the course,watch the contents of the course and can also give ratings and reviews to the course.
 
 ## Problems Faced:-
