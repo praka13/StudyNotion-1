@@ -4,7 +4,7 @@ This is a website where Instructors helps students to come on a common platform 
 
 ## Usage
 
-Just click on the below link and you are there on the website :- <a href="study-notion-frontend-mocha.vercel.app">link</a>
+Just click on the below link and you are there on the website :- <a href="https://study-notion-frontend-mocha.vercel.app/">link</a>
 
 ### Features:-
 <br>
