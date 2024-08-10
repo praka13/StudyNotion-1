@@ -28,6 +28,9 @@ To solve above mentioned problems I have watched various youtube tutorial videos
 
 Mine Website is not responsive so please open it on only desktop mode to get good view of my website.
 
+## Link to The Figma File:-
+<a href="https://www.figma.com/file/Mikd0FjHKAofUlWQSi70nf/StudyNotion_shared.">Link</a>
+
 
 
 ## Contributing
