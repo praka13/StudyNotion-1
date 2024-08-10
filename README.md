@@ -15,7 +15,7 @@ An Instructor can create a course set its price,can view no. of students enrolle
 #### Student Features:-
 A student can login and then he/she can buy the course,watch the contents of the course and can also give ratings and reviews to the course.<br>
 To see Detailed features here are the link of the videos:-<br>
-1.)<a href="https://youtu.be/5QU0-YteATg?feature=shared">Link-1</a>
+1.)<a href="https://youtu.be/5QU0-YteATg?feature=shared">Link-1</a><br>
 2.)<a href="https://youtu.be/WmfIGhMAUb0?feature=shared">Link-2</a>
 
 ## Problems Faced:-
