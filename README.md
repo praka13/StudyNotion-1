@@ -13,7 +13,10 @@ Here a particular user can signup as a Instructor or a Student.<br>
 An Instructor can create a course set its price,can view no. of students enrolled in a particular course,and its total earnings.<br>
 <br>
 #### Student Features:-
-A student can login and then he/she can buy the course,watch the contents of the course and can also give ratings and reviews to the course.
+A student can login and then he/she can buy the course,watch the contents of the course and can also give ratings and reviews to the course.<br>
+To see Detailed features here are the link of the videos:-<br>
+1.)<a href="https://youtu.be/5QU0-YteATg?feature=shared">Link-1</a>
+2.)<a href="https://youtu.be/WmfIGhMAUb0?feature=shared">Link-2</a>
 
 ## Problems Faced:-
 I have faced many problems in creating login and signup page,various modals etc..
